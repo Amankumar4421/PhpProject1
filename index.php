@@ -17,74 +17,72 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $_SESSION['login'] = true;
             $_SESSION['uname'] = $uname;
             header("location: home.php");
-        }
-        else {
+        } else {
             $err = true;
         }
     } else {
         $err = true;
     }
 }
-
 ?>
 
 <html>
 
-<head>
-    <title>Login</title>
-    <style>
-        * {
-            padding: 0%;
-            margin: 0%;
-        }
+    <head>
+        <title>Login</title>
+        <style>
+            * {
+                padding: 0%;
+                margin: 0%;
+            }
 
-        .container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
+            .container {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
 
-        .box {
-            width: 120%;
-            height: 30px;
-            margin-bottom: 10px;
-        }
+            .box {
+                width: 120%;
+                height: 30px;
+                margin-bottom: 10px;
+            }
 
-        span {
-            font-size: large;
-        }
+            span {
+                font-size: large;
+            }
 
-        .btn {
-            margin-top: 10px;
-            width: 120%;
-            height: 30px;
-        }
-    </style>
-</head>
+            .btn {
+                margin-top: 10px;
+                width: 120%;
+                height: 30px;
+            }
+        </style>
+    </head>
 
-<body>
-    <?php
-    if ($login) {
-        echo "<script> alert('Login Successfully'); </script>";
-    }
-    if ($err) {
-        echo "<script> alert('Invalid Login'); </script>";
-    }
-    ?>
-    <div class="container">
-        <form action="index.php" method="post">
-            <h2>Login to Our Website</h2><br>
-            <div class="input">
-                <span>Username </span>
-                <input type="text" name="uname" class="box" />
-            </div>
-            <div class="input">
-                <span>Password </span>
-                <input type="password" name="pass" class="box" />
-            </div>
-            <input type="submit" value="login" class="btn">
-        </form>
-    </div>
-</body>
+    <body>
+<?php
+if ($login) {
+    echo "<script> alert('Login Successfully'); </script>";
+}
+if ($err) {
+    echo "<script> alert('Invalid Login'); </script>";
+}
+?>
+        <div class="container">
+            <form action="index.php" method="post">
+                <h2>Login to Our Website</h2><br>
+                <div class="input">
+                    <span>Username </span>
+                    <input type="text" name="uname" class="box" />
+                </div>
+                <div class="input">
+                    <span>Password </span>
+                    <input type="password" name="pass" class="box" />
+                </div>
+                <input type="submit" value="login" class="btn">
+            </form>
+        </div>
+    </body>
 
 </html>

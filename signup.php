@@ -1,38 +1,34 @@
 <?php
-    require 'nav.php';
-    $alert = false;
-    $showerr = "";
-    if($_SERVER['REQUEST_METHOD']=='POST'){
-        if(!empty($_POST['uname'])||!empty($_POST['pass'])){
-            require 'dbconnect.php';
-            $uname = $_POST['uname'];
-            $pass = $_POST['pass'];
-            $cpass = $_POST['cpass'];
-            $esql="select * from student where sid='$uname'";
-            $resultt=mysqli_query($link,$esql);
-            $row=mysqli_num_rows($resultt);
-            if($row>0){
-                $showerr="User Already Exists";
-            }
-            else{
-                if($pass == $cpass){
-                    $hash=password_hash($pass,PASSWORD_DEFAULT);
-                    $sql="insert into student values('$uname','$hash')";
-                    $result=mysqli_query($link,$sql);
-                    if($result){
-                        $alert=true;
-                    }
+require 'nav.php';
+$alert = false;
+$showerr = "";
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    if (!empty($_POST['uname']) || !empty($_POST['pass'])) {
+        require 'dbconnect.php';
+        $uname = $_POST['uname'];
+        $pass = $_POST['pass'];
+        $cpass = $_POST['cpass'];
+        $esql = "select * from student where sid='$uname'";
+        $resultt = mysqli_query($link, $esql);
+        $row = mysqli_num_rows($resultt);
+        if ($row > 0) {
+            $showerr = "User Already Exists";
+        } else {
+            if ($pass == $cpass) {
+                $hash = password_hash($pass, PASSWORD_DEFAULT);
+                $sql = "insert into student values('$uname','$hash')";
+                $result = mysqli_query($link, $sql);
+                if ($result) {
+                    $alert = true;
                 }
-                else{
-                    $showerr="Password Mismatch";
-                }
+            } else {
+                $showerr = "Password Mismatch";
             }
         }
-        else{
-            $showerr="Please fill Username and Password";
-        }
+    } else {
+        $showerr = "Please fill Username and Password";
     }
-
+}
 ?>
 
 <html>
@@ -64,15 +60,14 @@
         </style>
     </head>
     <body>
-        <?php
-        if($alert){
-            echo "<script> alert('SignUp Successfully Now You can Login'); </script>";
-        }
-        if($showerr!=""){
-            echo "<script> alert('$showerr'); </script>";
-        }
-
-        ?>
+<?php
+if ($alert) {
+    echo "<script> alert('SignUp Successfully Now You can Login'); </script>";
+}
+if ($showerr != "") {
+    echo "<script> alert('$showerr'); </script>";
+}
+?>
         <div class="container">
             <form action="signup.php" method="post">
                 <h2>SignUp Here</h2><br>

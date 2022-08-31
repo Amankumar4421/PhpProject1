@@ -1,10 +1,10 @@
 <?php
+
 session_start();
-if(!isset($_SESSION['login']) || $_SESSION['login']!=true){
-    $login=false;
-}
-else{
-    $login=true;
+if (!isset($_SESSION['login']) || $_SESSION['login'] != true) {
+    $login = false;
+} else {
+    $login = true;
 }
 
 
@@ -44,12 +44,14 @@ echo '<html>
         <div class="navbar">
             <ul>
                 <li><a href="home.php">Home</a></li>';
-                if(!$login){
-                echo '<li><a href="index.php">Sign In</a></li>
-                <li><a href="signup.php">Sign Up</a></li>';}
-                if($login){
-                echo '<li><a href="logout.php">Logout</a></li>';}
-            echo '</ul>
+if (!$login) {
+    echo '<li><a href="index.php">Sign In</a></li>
+                <li><a href="signup.php">Sign Up</a></li>';
+}
+if ($login) {
+    echo '<li><a href="logout.php">Logout</a></li>';
+}
+echo '</ul>
         </div>
     </body>
 </html>';
